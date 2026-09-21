@@ -51,8 +51,16 @@ void tud_msc_inquiry_cb(uint8_t lun, uint8_t vendor_id[8], uint8_t product_id[16
 {
   (void) lun;
 
-  const char vid[] = "Adafruit";
-  const char pid[] = "nRF UF2";
+  // Overridable in board.h. SCSI INQUIRY caps these at 8 / 16 / 4 chars.
+  #ifndef UF2_MSC_VENDOR
+  #define UF2_MSC_VENDOR  "Adafruit"
+  #endif
+  #ifndef UF2_MSC_PRODUCT
+  #define UF2_MSC_PRODUCT "nRF UF2"
+  #endif
+
+  const char vid[] = UF2_MSC_VENDOR;
+  const char pid[] = UF2_MSC_PRODUCT;
   const char rev[] = "1.0";
 
   memcpy(vendor_id  , vid, strlen(vid));

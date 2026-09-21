@@ -1,3 +1,86 @@
+# KORLINX nRF52 Bootloader
+
+UF2/DFU bootloader for KORLINX nRF52 boards, forked from
+[Adafruit_nRF52_Bootloader](https://github.com/adafruit/Adafruit_nRF52_Bootloader).
+
+It presents a mass-storage drive you can drag a `.uf2` onto, and a USB CDC port
+that the Arduino IDE uploads to. Pair it with the
+[KORLINX Arduino BSP](https://github.com/KORLINX/Adafruit_nRF52_Arduino).
+
+## Boards
+
+| Board | USB ID | Source |
+|---|---|---|
+| NX40 nRF52840 | `0x1209:0x4E58` | [`src/boards/nx40_nrf52840/`](src/boards/nx40_nrf52840/) |
+
+`0x1209` is the [pid.codes](https://pid.codes) open-source vendor ID.
+
+## Building
+
+Requires an ARM cross compiler, plus `intelhex` and `adafruit-nrfutil` for
+packaging. The Zephyr SDK toolchain works if you have one.
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install intelhex adafruit-nrfutil
+
+PATH="$PWD/.venv/bin:$PATH" make \
+    BOARD=nx40_nrf52840 \
+    GIT_VERSION=0.9.2 _VER_MAJ=0 _VER_MIN=9 _VER_PAT=2 \
+    CROSS_COMPILE=$HOME/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi- \
+    all
+```
+
+Artifacts land in `_build/build-nx40_nrf52840/`.
+
+> **Note:** On macOS, pass `_VER_MAJ` / `_VER_MIN` / `_VER_PAT` explicitly. The
+> Makefile derives them with a GNU-only `sed` expression that BSD sed rejects,
+> and the build then fails in `main.c` with
+> `expected expression before '<<' token`.
+
+## Installing
+
+Copy the three artifacts into the BSP at `bootloader/nx40_nrf52840/`:
+
+```
+nx40_nrf52840_bootloader-<ver>_s140_6.1.1.hex
+nx40_nrf52840_bootloader-<ver>_s140_6.1.1.zip
+update-nx40_nrf52840_bootloader-<ver>_nosd.uf2
+```
+
+Keep the directory and file prefix lower case. The BSP's `platform.txt`
+resolves them from `{build.variant}`, which is `nx40_nrf52840`.
+
+Flash it over SWD with
+[nRF Util](https://www.nordicsemi.com/Products/Development-tools/nrf-util):
+
+```bash
+nrfutil device program \
+  --firmware nx40_nrf52840_bootloader-0.9.2_s140_6.1.1.hex \
+  --options chip_erase_mode=ERASE_ALL,reset=RESET_SYSTEM
+```
+
+## Adding a board
+
+Create `src/boards/<board>/` with `board.h`, `board.mk`, `board.cmake` and
+`pinconfig.c`. Copy an existing board and adjust the LED and button pins, the
+USB IDs and the UF2 strings. `src/boards/nx40_nrf52840/README.md` documents what
+each field controls.
+
+## Staying current with upstream
+
+```bash
+git remote add upstream https://github.com/adafruit/Adafruit_nRF52_Bootloader.git
+git fetch upstream && git merge upstream/master
+```
+
+Changes outside `src/boards/` are kept minimal so these merges stay clean.
+
+---
+
+Everything below is the upstream README.
+
+---
+
 # Adafruit nRF52 Bootloader
 
 [![Build Status](https://github.com/adafruit/Adafruit_nRF52_Bootloader/workflows/Build/badge.svg)](https://github.com/adafruit/Adafruit_nRF52_Bootloader/actions)

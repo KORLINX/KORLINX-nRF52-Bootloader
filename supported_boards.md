@@ -36,6 +36,7 @@
 | mdk_nrf52840_dongle | MDK nRF52840 USB Dongle | 0x239A:0x0029 | https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/ |
 | mikoto | Mikoto nRF52840 | 0x1209:0x7A01 | https://github.com/zhiayang/mikoto |
 | nice_nano | nice!nano | 0x239A:0x00B3 | https://nicekeyboards.com/docs/nice-nano |
+| nx40_nrf52840 | KORLINX NX40 nRF52840 | 0x1209:0x4E58 | https://github.com/KORLINX/korlinx-nRF52-Bootloader |
 | nrf52840_bboard | nRF52840 BBoard | 0x1D50:0x6157 | https://github.com/ddB0515/nRF52840-BBoard |
 | nRF52840_connect_kit | nRF52840 Connect Kit | 0x2886:0xF00F | https://wiki.makerdiary.com/nrf52840-connectkit/ |
 | nrf52840_m2 | MakerDiary nRF52840 M.2 Module | 0x2886:0xF00F | https://wiki.makerdiary.com/nrf52840-m2 |
