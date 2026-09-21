@@ -20,7 +20,7 @@ The Zephyr SDK toolchain works as the cross compiler.
     python3 -m venv .venv && .venv/bin/pip install intelhex adafruit-nrfutil
     PATH="$PWD/.venv/bin:$PATH" make \
         BOARD=nx40_nrf52840 \
-        GIT_VERSION=0.9.2 _VER_MAJ=0 _VER_MIN=9 _VER_PAT=2 \
+        GIT_VERSION=1.0.0 _VER_MAJ=1 _VER_MIN=0 _VER_PAT=0 \
         CROSS_COMPILE=$HOME/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi- \
         all
 

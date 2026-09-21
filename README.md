@@ -52,7 +52,7 @@ PATH="$PWD/.venv/bin:$PATH" make BOARD=nx40_nrf52840 all
 Output lands in `_build/build-nx40_nrf52840/`.
 
 > **macOS:** the Makefile's version parsing needs GNU sed, so pass the version
-> yourself: `make BOARD=nx40_nrf52840 GIT_VERSION=0.9.2 _VER_MAJ=0 _VER_MIN=9 _VER_PAT=2 all`
+> yourself: `make BOARD=nx40_nrf52840 GIT_VERSION=1.0.0 _VER_MAJ=1 _VER_MIN=0 _VER_PAT=0 all`
 
 ## Installing
 
@@ -61,7 +61,7 @@ A blank board needs the bootloader installed once over SWD, with
 
 ```bash
 nrfutil device program \
-  --firmware nx40_nrf52840_bootloader-0.9.2_s140_6.1.1.hex \
+  --firmware nx40_nrf52840_bootloader-1.0.0_s140_6.1.1.hex \
   --options chip_erase_mode=ERASE_ALL,reset=RESET_SYSTEM
 ```
 
@@ -73,14 +73,7 @@ Copy `src/boards/nx40_nrf52840/` to `src/boards/<target>/` and set the LED and
 button pins, USB IDs and UF2 strings in `board.h`. Add a row to the table above
 and to `supported_boards.md`.
 
-## License and notices
+## License
 
-MIT, the same terms as the upstream project. `LICENSE` retains Adafruit's
-copyright.
-
-Images link the Nordic SoftDevice S140 — Copyright (c) 2007–2018, Nordic
-Semiconductor ASA — which may be used only with a Nordic Semiconductor
-integrated circuit and must not be reverse engineered, decompiled, modified or
-disassembled. Other bundled components keep their own licenses under `lib/`.
-
-Neither Nordic Semiconductor nor Adafruit endorses this product.
+MIT; see `LICENSE`. Images include the Nordic SoftDevice S140, covered by
+`lib/softdevice/s140_nrf52_6.1.1/s140_nrf52_6.1.1_license-agreement.txt`.
