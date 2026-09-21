@@ -62,9 +62,9 @@ nrfutil device program \
 ## Adding a board
 
 Create `src/boards/<board>/` with `board.h`, `board.mk`, `board.cmake` and
-`pinconfig.c`. Copy an existing board and adjust the LED and button pins, the
-USB IDs and the UF2 strings. `src/boards/nx40_nrf52840/README.md` documents what
-each field controls.
+`pinconfig.c`. Copy `src/boards/nx40_nrf52840/` and adjust the LED and button
+pins, the USB IDs and the UF2 strings; its README documents what each field
+controls.
 
 ## Staying current with upstream
 
@@ -74,6 +74,25 @@ git fetch upstream && git merge upstream/master
 ```
 
 Changes outside `src/boards/` are kept minimal so these merges stay clean.
+This fork keeps only KORLINX boards, so expect conflicts on the board
+directories upstream still carries; resolve those by keeping our deletions.
+
+## License and notices
+
+KORLINX additions are released under the MIT license, the same terms as the
+upstream project. `LICENSE` retains Adafruit's copyright.
+
+Prebuilt images link the Nordic SoftDevice and other third-party components:
+
+- SoftDevice S140 — Copyright (c) 2007–2018, Nordic Semiconductor ASA. May be
+  used only with a Nordic Semiconductor integrated circuit, and must not be
+  reverse engineered, decompiled, modified or disassembled.
+- nrfx — Copyright (c) 2017–2019, Nordic Semiconductor ASA (BSD-3-Clause)
+- TinyUSB — Copyright (c) 2018, hathach (MIT)
+- UF2 — Copyright (c) Microsoft Corporation (MIT)
+- tinycrypt, SEGGER RTT — see `lib/*/LICENSE`
+
+Neither Nordic Semiconductor nor Adafruit endorses this product.
 
 ---
 
