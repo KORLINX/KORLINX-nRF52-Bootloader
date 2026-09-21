@@ -67,12 +67,6 @@ nrfutil device program \
 
 > **Warning:** this erases the whole chip.
 
-## Adding a board
-
-Copy `src/boards/nx40_nrf52840/` to `src/boards/<target>/` and set the LED and
-button pins, USB IDs and UF2 strings in `board.h`. Add a row to the table above
-and to `supported_boards.md`.
-
 ## License
 
 MIT; see `LICENSE`. Images include the Nordic SoftDevice S140, covered by
