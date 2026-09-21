@@ -5,7 +5,7 @@ UF2/DFU bootloader for KORLINX nRF52 boards, forked from
 
 It presents a mass-storage drive you can drag a `.uf2` onto, and a USB CDC port
 that the Arduino IDE uploads to. Pair it with the
-[KORLINX Arduino BSP](https://github.com/KORLINX/Adafruit_nRF52_Arduino).
+[KORLINX Arduino BSP](https://github.com/KORLINX/KORLINX-nRF52-Arduino).
 
 ## Boards
 
